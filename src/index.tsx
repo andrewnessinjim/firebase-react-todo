@@ -1,18 +1,26 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
-import App from './App';
+import TodoApp from './App';
 import reportWebVitals from './reportWebVitals';
 import { FirebaseAppProvider } from './infra/FirebaseProvider';
+import styled from 'styled-components/macro';
 
-
+const SiteContainerDiv = styled.div`
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+  height: 100%;
+`
 const container = document.getElementById('root');
 if(container) {
   const root = createRoot(container);
   root.render(
     <React.StrictMode>
       <FirebaseAppProvider>
-        <App />
+        <SiteContainerDiv>
+          <TodoApp />
+        </SiteContainerDiv>
       </FirebaseAppProvider>
     </React.StrictMode>
   );
