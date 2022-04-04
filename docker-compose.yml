@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  local-todo:
+    image: node:17
+    volumes:
+      - ./:/app
+    ports:
+      - '3000:3000'
+    tty: true
+    working_dir: /app
+    command: npm start
