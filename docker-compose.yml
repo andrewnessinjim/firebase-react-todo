@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  local-todo:
+  local-cra:
     image: node:17
     volumes:
       - ./:/app
@@ -10,3 +10,13 @@ services:
     tty: true
     working_dir: /app
     command: npm start
+
+  local-firebase:
+    image: local-firebase
+    ports:
+      - '4000:4000'
+      - '8080:8080'
+    build: ./firebase
+    working_dir: /firebase
+    volumes:
+     - ./firebase:/firebase
