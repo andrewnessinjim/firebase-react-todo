@@ -31,7 +31,7 @@ export function FirebaseAppProvider({children}: FirebaseProviderProps) {
     useEffect(()=>{
         async function setupFirestore() {
             const db =getFirestore();
-            connectFirestoreEmulator(db, 'local-firebase', 8080);
+            connectFirestoreEmulator(db, 'localhost', 8080);
             setDb(db)
         }
         setupFirestore();
