@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, onSnapshot, query } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import styled from "styled-components/macro";
 import { useFirebaseApp } from "./infra/FirebaseProvider";
@@ -22,17 +22,16 @@ function TodoList() {
     const [todos, setTodos] = useState<Todo[]>([]);
 
     useEffect(() => {
-        (async function() {
-            const uiTodos:Todo[] = [];
-            try {
-              const dbTodos = (await getDocs(collection(db, "todos")));
-              dbTodos.forEach(doc => uiTodos.push({todoText: doc.data().todoText, id:doc.id}));
-              setTodos(uiTodos);
-            } catch(e) {
-              console.log("Error fetching documents", e)
-            }
-          })();
+      const unsub = onSnapshot(query(collection(db, "todos")), collection => {
+        const todos:Todo[] = [];
+        collection.forEach((doc) => {
+          todos.push({todoText: doc.data().todoText, id :doc.id});
+        });
+        setTodos(todos);
       });
+
+      return unsub;
+      }, [db]);
 
     return (
     <TodoOl>
