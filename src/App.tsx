@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-import { collection, addDoc, getDocs } from "firebase/firestore"; 
+import { collection, addDoc} from "firebase/firestore"; 
 import { useFirebaseApp } from './infra/FirebaseProvider';
 
 import styled from 'styled-components/macro';
@@ -11,7 +11,6 @@ const AppDiv = styled.div`
   flex-direction: column;
   height: 100%;
 `
-
 
 function TodoApp() {
   const [todoText, setTodoText] = useState("");

@@ -1,4 +1,4 @@
-import { collection, getDocs, onSnapshot, query } from "firebase/firestore";
+import { collection, onSnapshot, query } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import styled from "styled-components/macro";
 import { useFirebaseApp } from "./infra/FirebaseProvider";
