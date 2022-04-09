@@ -1,4 +1,4 @@
-import { collection, onSnapshot, query } from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import styled from "styled-components/macro";
 import { useFirebaseApp } from "./infra/FirebaseProvider";
@@ -29,7 +29,7 @@ function TodoList() {
     const [todos, setTodos] = useState<Todo[]>([]);
 
     useEffect(() => {
-      const unsub = onSnapshot(query(collection(db, "todos")), collection => {
+      const unsub = onSnapshot(query(collection(db, "todos"), orderBy("created")), collection => {
         const todos:Todo[] = [];
         collection.forEach((doc) => {
           todos.push({todoText: doc.data().todoText, id :doc.id});

@@ -30,7 +30,8 @@ function AddTodoForm() {
 
         try {
             const docRef = await addDoc(collection(db, "todos"), {
-                todoText
+                todoText,
+                created: new Date()
             });
             console.log("Document written with ID: ", docRef.id);
             setTodoText("");
