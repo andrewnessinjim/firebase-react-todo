@@ -9,12 +9,19 @@ type Todo = {
 }
 
 const TodoOl = styled.ol`
-flex: 1;
-list-style: none;
+  flex: 1;
+  list-style: none;
+  margin: 0;
 `;
 
 const TodoLi = styled.li`
   padding  : 10px;
+`;
+
+const TodoTitle = styled.h1`
+  font-size: 1.2rem;
+  background-color: #555;
+  padding: 10px;
 `;
 
 function TodoList() {
@@ -33,10 +40,12 @@ function TodoList() {
       return unsub;
       }, [db]);
 
-    return (
-    <TodoOl>
-        {todos?.map(todo => <TodoLi key={todo.id}>{todo.todoText}</TodoLi>)}
-    </TodoOl>)
+    return (<>
+      <TodoTitle>Current Todos</TodoTitle>
+      <TodoOl>
+          {todos?.map(todo => <TodoLi key={todo.id}>{todo.todoText}</TodoLi>)}
+      </TodoOl>
+    </>)
 }
 
 export default TodoList;

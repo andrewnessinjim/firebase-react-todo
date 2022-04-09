@@ -11,9 +11,8 @@ const AppDiv = styled.div`
 function TodoApp() {
   return (
     <AppDiv>
-        <h1>Your Todos</h1>
-        <TodoList/>
         <AddTodoForm />
+        <TodoList/>
     </AppDiv>
   );
 }
