@@ -13,9 +13,6 @@ const TodoOl = styled.ol`
   list-style: none;
   margin: 0;
   padding: 0;
-  overflow: auto;
-  height: 400px;
-
 `;
 
 const TodoLi = styled.li`

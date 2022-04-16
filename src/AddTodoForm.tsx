@@ -7,13 +7,17 @@ import WidthWrap from "./infra/WidthWrap";
 const TodoInput = styled.input`
     padding: 10px;
     font-size: 1rem;
+    margin-right: 5px;
     flex: 1;
-    margin-right: 10px;
+    max-width: 700px;
 `;
 
 const TodoForm = styled.form`
     display: flex;
-    width: 65%;
+    align-self: center;
+    margin: auto;
+    width: 90%;
+    justify-content: center;
 `;
 
 function AddTodoForm() {
