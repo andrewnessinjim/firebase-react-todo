@@ -12,4 +12,4 @@ RUN apk --no-cache add openjdk11-jre bash && \
 
 WORKDIR /firebase/
 
-CMD ["firebase", "emulators:start", "--project", "demo-react-todo", "--export-on-exit", "--import", "/firebase-data"]
+CMD ["firebase", "emulators:start", "--debug", "--project", "demo-react-todo", "--export-on-exit", "--import", "/firebase-data/data"]
