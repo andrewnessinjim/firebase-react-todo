@@ -32,15 +32,16 @@ function TodoList() {
     const [todos, setTodos] = useState<Todo[]>([]);
 
     useEffect(() => {
-      const unsub = onSnapshot(query(collection(db, "todos"), orderBy("created")), collection => {
-        const todos:Todo[] = [];
-        collection.forEach((doc) => {
-          todos.push({todoText: doc.data().todoText, id :doc.id});
+      if(db) {
+        const unsub = onSnapshot(query(collection(db, "todos"), orderBy("created")), collection => {
+          const todos:Todo[] = [];
+          collection.forEach((doc) => {
+            todos.push({todoText: doc.data().todoText, id :doc.id});
+          });
+          setTodos(todos);
         });
-        setTodos(todos);
-      });
-
-      return unsub;
+        return unsub;
+      }
       }, [db]);
 
     return (<>

@@ -12,12 +12,6 @@ const firebaseConfig = {
 
 export const useFirebaseApp = () => {
     const fireStore = useContext(FirebaseAppContext);
-    if(!fireStore) {
-        throw new Error(
-            `You must call useFirebaseApp() inside of a <FirebaseAppProvider />`
-        );
-    }
-
     return fireStore;
 }
 
@@ -39,8 +33,6 @@ export function FirebaseAppProvider({children}: FirebaseProviderProps) {
     
     
     return (
-        !db ? <></>
-        :
         <FirebaseAppContext.Provider value={db}>
             {children}
         </FirebaseAppContext.Provider>
