@@ -1,8 +1,8 @@
 import { addDoc, collection } from "firebase/firestore";
 import { useState } from "react";
 import styled from "styled-components/macro";
-import { useFirebaseApp } from "./infra/FirebaseProvider";
-import WidthWrap from "./infra/WidthWrap";
+import { useFirebaseApp } from "../infra/FirebaseProvider";
+import WidthWrap from "../infra/WidthWrap";
 
 const TodoInput = styled.input`
     padding: 10px;

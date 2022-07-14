@@ -1,8 +1,8 @@
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import styled from "styled-components/macro";
-import { useFirebaseApp } from "./infra/FirebaseProvider";
-import WidthWrap from "./infra/WidthWrap";
+import { useFirebaseApp } from "../infra/FirebaseProvider";
+import WidthWrap from "../infra/WidthWrap";
 
 type Todo = {
     id: string,
