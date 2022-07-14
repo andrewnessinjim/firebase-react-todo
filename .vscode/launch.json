@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "name": "Chrome Launch",
+            "request": "launch",
+            "url": "http://localhost:3000",
+            "userDataDir": "${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir",
+            "webRoot": "${workspaceFolder}",
+            "sourceMapPathOverrides": {
+                "webpack:///src/*": "${webRoot}/*"
+            }
+        }
+    ]
+}
