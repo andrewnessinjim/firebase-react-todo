@@ -28,7 +28,7 @@ const TodoTitle = styled.h1`
 `;
 
 function TodoList() {
-    const db = useFirebaseApp();
+    const {db} = useFirebaseApp();
     const [todos, setTodos] = useState<Todo[]>([]);
 
     useEffect(() => {
