@@ -1,5 +1,5 @@
 import React, {ReactNode, useContext, useEffect, useState} from "react";
-import { initializeApp } from "firebase/app";
+import { FirebaseApp, initializeApp } from "firebase/app";
 import { getAuth, connectAuthEmulator } from "firebase/auth";
 
 
@@ -12,6 +12,7 @@ const FirebaseAppContext = React.createContext<any>(null);
 
 const firebaseConfig = {
     projectId: "demo-react-todo",
+    apiKey: "dummy-key-for-emulator"
 };
 
 
@@ -23,31 +24,31 @@ export const useFirebaseApp = () => {
 type FirebaseProviderProps = {
     children: ReactNode
 }
+async function setupFirestore(app:FirebaseApp, setDb:any) {
+    const db =getFirestore(app);
+    connectFirestoreEmulator(db, 'localhost', 8081);
+    setDb(db)
+}
+
+async function setupUi(app:FirebaseApp, setUi:any) {
+    const auth = getAuth(app);
+    connectAuthEmulator(auth, "http://localhost:9099");
+
+    if(firebaseui.auth.AuthUI.getInstance()) {
+        setUi(firebaseui.auth.AuthUI.getInstance())
+      } else {
+        setUi(new firebaseui.auth.AuthUI(auth))
+      }
+}
+
 export function FirebaseAppProvider({children}: FirebaseProviderProps) {
-    const app = initializeApp(firebaseConfig);
+    const app:FirebaseApp = initializeApp(firebaseConfig);
     const [db, setDb] = useState<Firestore|null>(null);
     const [ui, setUi] = useState<any>(null);
 
     useEffect(()=>{
-        async function setupFirestore() {
-            const db =getFirestore(app);
-            connectFirestoreEmulator(db, 'localhost', 8080);
-            setDb(db)
-        }
-
-        async function setupUi() {
-            const auth = getAuth(app);
-            connectAuthEmulator(auth, "http://localhost:9099");
-
-            if(firebaseui.auth.AuthUI.getInstance()) {
-                setUi(firebaseui.auth.AuthUI.getInstance())
-              } else {
-                setUi(new firebaseui.auth.AuthUI(auth))
-              }
-        }
-
-        setupFirestore();
-        setupUi();
+        setupFirestore(app, setDb);
+        setupUi(app, setUi);
     }, [app]);
     
     
