@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import styled from "styled-components/macro";
@@ -50,7 +52,7 @@ function TodoList() {
       </WidthWrap>
       <WidthWrap>
         <TodoOl>
-            {todos?.map(todo => <TodoLi key={todo.id}>{todo.todoText}</TodoLi>)}
+            {todos.map(todo => <TodoLi key={todo.id}>{todo.todoText}</TodoLi>)}
         </TodoOl>
       </WidthWrap>
     </>)
